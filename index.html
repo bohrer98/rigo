@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Convite para Duda 🌟</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(to right, #ffe6f0, #e6f0ff);
+      overflow-x: hidden;
+    }
+
+    .pagina {
+      display: none;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .pagina.ativa {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    .botao,
+    .opcao {
+      background: #ff66b2;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      margin: 10px 5px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .botao:hover,
+    .opcao:hover {
+      background: #ff3385;
+      transform: scale(1.05);
+    }
+
+    .opcao.selecionada {
+      background: #cc0066;
+    }
+
+    .input-estilizado {
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      width: 80%;
+      font-family: 'Quicksand', sans-serif;
+      margin-top: 10px;
+    }
+
+    .estrelas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: url('https://i.gifer.com/7plQ.gif');
+      background-size: cover;
+      opacity: 0.15;
+      z-index: -1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="estrelas"></div>
+
+  <div id="pagina-inicial" class="pagina ativa">
+    <div class="card">
+      <h2>Oi Duda! 🌟</h2>
+      <p>Antes de tudo, só queria dizer que você é uma pessoa incrível.<br>Virginiana, linda, super família, nerdzinha adorável, que ama pets, games, vôlei e um bom sertanejo...</p>
+      <p>Esse convite é só uma desculpa pra te ver sorrindo mais uma vez. Vamos descobrir juntos o que a noite nos reserva? 💫</p>
+      <button class="botao" onclick="mostrarPagina('pagina-comida')">Descobrir 🍽️</button>
+    </div>
+  </div>
+
+  <div id="pagina-comida" class="pagina">
+    <div class="card">
+      <h2>Vamos escolher o mood gastronômico! 🍽️</h2>
+      <p>Porque uma virginiana merece comer bem e com estilo.</p>
+
+      <div class="opcoes">
+        <button class="opcao" onclick="selecionarComida(this, 'Comida Italiana 🍝')">Comida Italiana 🍝</button>
+        <button class="opcao" onclick="selecionarComida(this, 'Comida Japonesa 🍣')">Comida Japonesa 🍣</button>
+        <button class="opcao" onclick="selecionarComida(this, 'Lancheira Gourmet 🍔')">Lancheira Gourmet 🍔</button>
+        <button class="opcao" onclick="selecionarComida(this, 'Mexicana ou Paraguaia 🌮')">Mexicana ou Paraguaia 🌮</button>
+        <button class="opcao" onclick="mostrarOutroComida()">Outro 💡</button>
+      </div>
+
+      <div id="outro-comida" style="display: none; margin-top: 15px;">
+        <input type="text" id="comidaOutroTexto" placeholder="Escreve sua sugestão..." class="input-estilizado" />
+        <button class="botao" onclick="confirmarOutroComida()">Confirmar</button>
+      </div>
+
+      <button class="botao" onclick="irParaRole()">Próxima 👉</button>
+    </div>
+  </div>
+
+  <div id="pagina-rolê" class="pagina">
+    <div class="card">
+      <h2>Duda, topa um rolê diferenciado? ✨</h2>
+      <p>Primeiro, qual o estilo de programa que você curtiria depois da janta?</p>
+      <div class="opcoes">
+        <button class="opcao" onclick="selecionarRole(this, 'Cinema 🎬')">Cinema 🎬</button>
+        <button class="opcao" onclick="selecionarRole(this, 'Karaokê 🎤')">Karaokê 🎤</button>
+        <button class="opcao" onclick="selecionarRole(this, 'Jogos & Fliperama 👾')">Jogos & Fliperama 👾</button>
+        <button class="opcao" onclick="mostrarOutroRole()">Outro 💡</button>
+      </div>
+      <div id="outro-role" style="display: none; margin-top: 15px;">
+        <input type="text" id="roleOutroTexto" placeholder="Escreve aí sua ideia..." class="input-estilizado" />
+        <button class="botao" onclick="confirmarOutroRole()">Confirmar</button>
+      </div>
+      <button class="botao" onclick="irParaData()">Próxima 👉</button>
+    </div>
+  </div>
+
+  <div id="pagina-data" class="pagina">
+    <div class="card">
+      <h2>Escolhe uma data mágica pro nosso rolê 🗓️</h2>
+      <input type="date" id="dataEncontro" class="input-estilizado" />
+      <button class="botao" onclick="mostrarResumo()">Finalizar Convite 💖</button>
+    </div>
+  </div>
+
+  <div id="pagina-final" class="pagina">
+    <div class="card">
+      <h2>Duda Rigo, o convite está pronto! 💌</h2>
+      <p>✨ Rolê: <strong id="resumo-role"></strong></p>
+      <p>🍽️ Comida: <strong id="resumo-comida"></strong></p>
+      <p>📅 Dia: <strong id="resumo-data"></strong></p>
+      <p class="emoji">🐾🎮💫</p>
+      <div style="margin-top: 20px;">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2SkV7WwL7Sh1z4bJPOopbB?utm_source=generator&theme=0" width="100%" height="80" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let roleEscolhido = '';
+    let comidaEscolhida = '';
+    let botaoComidaSelecionado = null;
+    let botaoRoleSelecionado = null;
+
+    function mostrarPagina(id) {
+      document.querySelectorAll('.pagina').forEach(p => p.classList.remove('ativa'));
+      document.getElementById(id).classList.add('ativa');
+      window.scrollTo(0, 0); // volta ao topo
+    }
+
+    function selecionarRole(botao, role) {
+      roleEscolhido = role;
+      document.getElementById('outro-role').style.display = 'none';
+      if (botaoRoleSelecionado) botaoRoleSelecionado.classList.remove('selecionada');
+      botao.classList.add('selecionada');
+      botaoRoleSelecionado = botao;
+    }
+
+    function mostrarOutroRole() {
+      document.getElementById('outro-role').style.display = 'block';
+      if (botaoRoleSelecionado) {
+        botaoRoleSelecionado.classList.remove('selecionada');
+        botaoRoleSelecionado = null;
+      }
+      roleEscolhido = '';
+    }
+
+    function confirmarOutroRole() {
+      const texto = document.getElementById('roleOutroTexto').value.trim();
+      if (texto) {
+        roleEscolhido = texto;
+        alert(`Adicionado: ${texto}`);
+        // marcar como selecionado - não há botão, então podemos deixar a caixa oculta
+        document.getElementById('outro-role').style.display = 'none';
+        botaoRoleSelecionado = null;
+      } else {
+        alert('Por favor, escreva sua ideia para o rolê.');
+      }
+    }
+
+    function selecionarComida(botao, comida) {
+      comidaEscolhida = comida;
+      document.getElementById('outro-comida').style.display = 'none';
+      if (botaoComidaSelecionado) botaoComidaSelecionado.classList.remove('selecionada');
+      botao.classList.add('selecionada');
+      botaoComidaSelecionado = botao;
+    }
+
+    function mostrarOutroComida() {
+      document.getElementById('outro-comida').style.display = 'block';
+      if (botaoComidaSelecionado) {
+        botaoComidaSelecionado.classList.remove('selecionada');
+        botaoComidaSelecionado = null;
+      }
+      comidaEscolhida = '';
+    }
+
+    function confirmarOutroComida() {
+      const texto = document.getElementById('comidaOutroTexto').value.trim();
+      if (texto) {
+        comidaEscolhida = texto;
+        alert(`Adicionado: ${texto}`);
+        document.getElementById('outro-comida').style.display = 'none';
+      } else {
+        alert('Por favor, escreva sua sugestão para a comida.');
+      }
+    }
+
+    function irParaRole() {
+      if (!comidaEscolhida) {
+        alert('Por favor, escolha ou escreva uma opção de comida antes de continuar.');
+        return;
+      }
+      mostrarPagina('pagina-rolê');
+    }
+
+    function irParaData() {
+      if (!roleEscolhido) {
+        alert('Por favor, escolha ou escreva uma opção de rolê antes de continuar.');
+        return;
+      }
+      mostrarPagina('pagina-data');
+    }
+
+    function mostrarResumo() {
+      const dataEscolhida = document.getElementById('dataEncontro').value;
+      if (!dataEscolhida) {
+        alert('Por favor, escolha uma data para o encontro.');
+        return;
+      }
+
+      const dataFormatada = new Date(dataEscolhida).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+
+      document.getElementById('resumo-role').textContent = roleEscolhido;
+      document.getElementById('resumo-comida').textContent = comidaEscolhida;
+      document.getElementById('resumo-data').textContent = dataFormatada;
+
+      mostrarPagina('pagina-final');
+    }
+  </script>
+</body>
+
+</html>
